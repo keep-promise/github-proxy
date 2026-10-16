@@ -1,4 +1,4 @@
-// GitHub 反向代理（EdgeOne Pages Functions）
+// GitHub 反向代理（EdgeOne Edge Functions）
 //   /raw/xxx     -> https://raw.githubusercontent.com/xxx
 //   /assets/xxx  -> https://github.githubassets.com/xxx
 //   其它路径       -> https://github.com/xxx
@@ -8,7 +8,8 @@ const UPSTREAMS = [
   { prefix: '/assets/', host: 'github.githubassets.com' },
 ];
 
-export async function onRequest({ request }) {
+export default async function onRequest(context) {
+  const request = context.request;
   const url = new URL(request.url);
   const path = url.pathname + url.search;
 
